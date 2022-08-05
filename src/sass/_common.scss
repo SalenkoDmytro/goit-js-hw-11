@@ -1,1 +1,18 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+
+.search-form {
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(15, 15, 127);
+}
+
+input {
+  display: inline-block;
+  height: 30px;
+}
+
+button {
+  border: none;
+  height: 30px;
+}
