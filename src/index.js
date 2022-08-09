@@ -20,7 +20,7 @@ const imageService = new ImageService();
 export const axios = require('axios');
 
 form.addEventListener('submit', onFormSubmit);
-searchBtn.addEventListener('click', onLoadMore);
+searchBtn.addEventListener('click', onLoadMoreClick);
 
 async function onFormSubmit(e) {
   e.preventDefault();
@@ -39,7 +39,7 @@ async function onFormSubmit(e) {
   }
 }
 
-async function onLoadMore() {
+async function onLoadMoreClick() {
   hiddenLoadMoreBtn();
   try {
     const data = await imageService.fetchImages();
