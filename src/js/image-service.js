@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const BASE_URL = 'https://pixabay.com/api/';
 const KEY = '29082110-259fa3573f07e09f564e9c4c2';
 

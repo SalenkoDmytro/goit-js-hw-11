@@ -1,4 +1,5 @@
-const axios = require('axios');
+import './sass/styles.scss';
+import './css/styles.css';
 import { form, searchBtn, gallery } from './js/refs';
 import {
   renderCards,
@@ -84,7 +85,7 @@ function smoothScroll() {
     gallery.firstElementChild.getBoundingClientRect();
 
   window.scrollBy({
-    top: cardHeight * 2.5,
+    top: cardHeight * 2.55,
     behavior: 'smooth',
   });
 }
