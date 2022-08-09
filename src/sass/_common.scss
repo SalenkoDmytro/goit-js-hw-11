@@ -53,10 +53,15 @@ button {
   border-radius: 0px 0px 4px 4px;
   flex-basis: calc((100% - 3 * 30px) / 4);
 }
-.photo-card img {
+
+.thumb {
   height: 220px;
-  flex-grow: 1;
+  // width: 320px;
+}
+.photo-card img {
   object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 .info {
   display: flex;

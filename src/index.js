@@ -1,3 +1,4 @@
+const axios = require('axios');
 import { form, searchBtn, gallery } from './js/refs';
 import {
   renderCards,
@@ -41,6 +42,7 @@ function doWithFetchResultOnSubmitBtn(resolve) {
   quantityMessage(resolve.totalHits);
 
   renderCards(resolve);
+
   imageService.simpleLightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
@@ -54,6 +56,7 @@ function doWithFetchOnLoadMoreBtn(resolve) {
 
   renderCards(resolve);
   imageService.simpleLightbox.refresh();
+  smoothScroll();
 }
 
 function lettersNeededMessage() {
@@ -74,4 +77,14 @@ function limitMessage() {
   return Notiflix.Notify.failure(
     "We're sorry, but you've reached the end of search results."
   );
+}
+
+function smoothScroll() {
+  const { height: cardHeight } =
+    gallery.firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 2.5,
+    behavior: 'smooth',
+  });
 }
