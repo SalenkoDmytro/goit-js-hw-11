@@ -11,11 +11,12 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import Notiflix from 'notiflix';
 import ImageService from './js/image-service.js';
 const imageService = new ImageService();
+export const axios = require('axios');
 
 form.addEventListener('submit', onFormSubmit);
 searchBtn.addEventListener('click', onLoadMore);
 
-function onFormSubmit(e) {
+async function onFormSubmit(e) {
   e.preventDefault();
   hiddenLoadMoreBtn();
   clearCardContainer();
@@ -24,16 +25,22 @@ function onFormSubmit(e) {
   if (imageService.query === '') return lettersNeededMessage();
 
   imageService.resetPage();
-  imageService
-    .fetchImages()
-    .then(doWithFetchResultOnSubmitBtn)
-    .catch(console.log);
+  try {
+    const data = await imageService.fetchImages();
+    doWithFetchResultOnSubmitBtn(data);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-function onLoadMore() {
+async function onLoadMore() {
   hiddenLoadMoreBtn();
-
-  imageService.fetchImages().then(doWithFetchOnLoadMoreBtn).catch(console.log);
+  try {
+    const data = await imageService.fetchImages();
+    doWithFetchOnLoadMoreBtn(data);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function doWithFetchResultOnSubmitBtn(resolve) {
@@ -44,10 +51,7 @@ function doWithFetchResultOnSubmitBtn(resolve) {
 
   renderCards(resolve);
 
-  imageService.simpleLightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
+  imageService.simpleLightbox = new SimpleLightbox('.gallery a');
 }
 
 function doWithFetchOnLoadMoreBtn(resolve) {
